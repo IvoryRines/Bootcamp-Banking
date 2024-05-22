@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Blog extends Model {}
+class Account extends Model {}
 
-Blog.init(
+Account.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,25 +11,29 @@ Blog.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    subject_name: {
+    account_type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    date_of_last_post: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    number_of_posts: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+
+    // do we want to display this 
+    //info right away, or wait for them to click on the account type?
+    
+    // account_number: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
+    // account_balance: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // }
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "blog",
+    modelName: "account",
   }
 );
 
-module.exports = Blog;
+module.exports = Account;

@@ -19,14 +19,14 @@ Checking.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    last_transaction_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    account_id: {
+    // last_transaction_date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    // },
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "account",
+        model: "user",
         key: "id",
       },
     },

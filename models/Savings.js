@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Saving extends Model {}
+class Savings extends Model {}
 
-Saving.init(
+Savings.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,14 +19,14 @@ Saving.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    last_transaction_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    account_id: {
+    // last_transaction_date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    // },
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "account",
+        model: "user",
         key: "id",
       },
     },
@@ -39,4 +39,4 @@ Saving.init(
   }
 );
 
-module.exports = Saving;
+module.exports = Savings;

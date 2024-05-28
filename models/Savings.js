@@ -12,11 +12,11 @@ Savings.init(
       autoIncrement: true,
     },
     account_number: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     account_balance: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     // last_transaction_date: {

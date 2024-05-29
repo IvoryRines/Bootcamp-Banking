@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS bootcampBanking_db;
+DROP DATABASE IF EXISTS bootcampbanking_db;
 
-CREATE DATABASE bootcampBanking_db;
+CREATE DATABASE bootcampbanking_db;

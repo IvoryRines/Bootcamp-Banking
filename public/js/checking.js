@@ -2,11 +2,14 @@ const depositInputHandler = async (event) => {
     event.preventDefault();
   
     const deposit = document.querySelector('#deposit-input').value.trim();
+    const balance = document.querySelector('.span').textContent.trim();
+
+    const newBalance = Number(deposit) + Number(balance);
   
     if (deposit) {
       const response = await fetch('/api/users/checking', {
         method: 'PUT',
-        body: JSON.stringify({ account_balance }),
+        body: JSON.stringify({ newBalance }),
         headers: { 'Content-Type': 'application/json' },
       });
   

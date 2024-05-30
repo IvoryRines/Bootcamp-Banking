@@ -35,7 +35,7 @@ router.put('/checking/:id', withAuth, async (req, res) => {
     try {
       const dbCheckingData = await Checking.update(
         {
-          account_balance: req.body.account_balance
+          account_balance: req.body.newBalance
         },
         {
           where: {

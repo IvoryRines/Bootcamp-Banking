@@ -1,0 +1,43 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 1em;
+  text-align: center;
+}
+
+.account-links {
+  margin-top: 1em;
+}
+
+.account-links a {
+  display: block;
+  margin: 0.5em 0;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.account-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive image styles */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Additional responsive design for smaller screens */
+@media (max-width: 600px) {
+  .container {
+    padding: 0.5em;
+  }
+
+  .account-links a {
+    font-size: 1.2em;
+  }
+}

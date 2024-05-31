@@ -4,19 +4,24 @@
   <div class="checking-account">
     <container>
         <h3 class="balance">Available Balance: <span class="span">{{checking.account_balance}}</span></h3>
-        <p>Account Details:</p>
-          <ul>
-            <li>Account: {{checking.account_number}}</li>
-            <li>Last Transaction: </li>
-          </ul>
+        <h3>Account Number: {{checking.account_number}}</h3>
     </container>
-    <div class="deposit">
-      <label>Deposit:</label>
-      <input id="deposit-input"/>
-    </div>
-    <div class="withdraw">
-      <label>Withdraw:</label>
-      <input class="withdraw-input">
+    <div class="manage">
+      <h3>Manage Account</h3>
+      <div class="transfer">
+        <input class="transfer-input"/>
+        <button class="btn btn-primary" type="submit">Transfer</button>
+      </div>
+      <div class="deposit">
+        <input class="deposit-input"/>
+        <button class="btn btn-primary" type="submit">Deposit</button>
+      </div>
+      <div class="withdraw">
+        <input class="withdraw-input"/>
+        <button class="btn btn-primary" type="submit">Withdraw</button>
+      </div>
     </div>
   </div>
 </section>
+
+<script src="/js/checking.js"></script>

@@ -52,11 +52,12 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-
-router.get("/checking", withAuth, async (req, res) => {
+router.get("/checking", async (req, res) => {
   try {
-    const checkingData = await Checking.findAll({
-      attributes: ["account_number", "account_balance"]
+    const checkingData = await Checking.findOne({
+      where: {
+        user_id: req.session.user_id,
+      },
     });
     const checking = checkingData.map((project) => project.get({ plain: true }));
     res.render("checking", {
@@ -68,10 +69,12 @@ router.get("/checking", withAuth, async (req, res) => {
   }
 });
 
-router.get("/savings", withAuth, async (req, res) => {
+router.get("/savings", async (req, res) => {
   try {
-    const savingsData = await Savings.findAll({
-      attributes: ["account_number", "account_balance"]
+    const savingsData = await Savings.findOne({
+      where: {
+        user_id: req.session.user_id,
+      },
     });
     const savings = savingsData.map((project) => project.get({ plain: true }));
     res.render("savings", {

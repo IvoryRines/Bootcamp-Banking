@@ -1,17 +1,11 @@
 <section class="container">
-  <h3 class="gallery-name">{{gallery.name}}</h3>
-  <section class="flex-row justify-center">
-    {{#each gallery.paintings as |painting|}}
-    <section class="card">
-      <a href="/painting/{{id}}">
-        <header>{{title}}</header>
-
-        <div class="card-body">
-          <img src="/images/{{filename}}" alt="{{description}}">
-          <p>By: {{artist}}</p>
-        </div>
-      </a>
-    </section>
-    {{/each}}
-  </section>
+  <img
+    src="images/mobile-banking-image.jpg"
+    alt="Mobile Banking"
+    class="responsive-img"
+  />
+  <div class="account-links">
+    <a href="/checking">Checking {{checking.account_number}}</a>
+    <a href="/saving">Savings {{savings.account_number}}</a>
+  </div>
 </section>

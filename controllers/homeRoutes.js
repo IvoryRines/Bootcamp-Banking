@@ -59,7 +59,7 @@ router.get("/checking", async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-    const checking = checkingData.map((project) => project.get({ plain: true }));
+    const checking = checkingData.get({ plain: true });
     res.render("checking", {
       checking,
       logged_in: req.session.logged_in,
@@ -76,7 +76,7 @@ router.get("/savings", async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-    const savings = savingsData.map((project) => project.get({ plain: true }));
+    const savings = savingsData.get({ plain: true });
     res.render("savings", {
       savings,
       logged_in: req.session.logged_in,

@@ -8,19 +8,21 @@
     </container>
     <div class="manage">
       <h3>Manage Account</h3>
-      <div class="transfer">
+      <div id="transfer">
         <input class="transfer-input"/>
-        <button class="btn btn-primary" type="submit">Transfer</button>
+        <button class="transfer-btn btn btn-primary" type="click">Transfer</button>
       </div>
       <div class="deposit">
         <input class="deposit-input"/>
-        <button class="btn btn-primary" type="submit">Deposit</button>
+        <button class="deposit-btn btn btn-primary" type="click">Deposit</button>
       </div>
       <div class="withdraw">
         <input class="withdraw-input"/>
-        <button class="btn btn-primary" type="submit">Withdraw</button>
+        <button class="withdraw-btn btn btn-primary" type="click">Withdraw</button>
       </div>
     </div>
+    <h3>Last managed on {{savings.updatedAt}}</h3>
+    <h3>Created on {{savings.createdAt}}</h3>
   </div>
 </section>
 

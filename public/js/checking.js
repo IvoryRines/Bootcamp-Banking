@@ -28,7 +28,7 @@ const transferInputHandler = async (event) => {
     const deposit = document.querySelector('.deposit-input').value.trim();
     const balance = document.querySelector('.span').textContent.trim();
 
-    const changedBalance = Number(balance) - Number(deposit);
+    const newBalance = Number(balance) + Number(deposit);
   
     if (deposit) {
       const response = await fetch('/api/accounts/checking', {
@@ -49,10 +49,10 @@ const transferInputHandler = async (event) => {
 const withdrawInputHandler = async (event) => {
     event.preventDefault();
   
-    const withdraw = document.querySelector('#withdraw-input').value.trim();
+    const withdraw = document.querySelector('.withdraw-input').value.trim();
     const balance = document.querySelector('.span').textContent.trim();
 
-    const changedBalance = Number(balance) - Number(withdraw);
+    const newBalance = Number(balance) - Number(withdraw);
   
     if (withdraw) {
       const response = await fetch('/api/accounts/checking', {
@@ -71,11 +71,11 @@ const withdrawInputHandler = async (event) => {
   };
 
 document
-  .querySelector('.transfer')
-  .addEventListener('submit', depositInputHandler);
+  .querySelector('.transfer-btn')
+  .addEventListener('click', transferInputHandler);
 document
-    .querySelector('.deposit')
-    .addEventListener('submit', depositInputHandler);
+    .querySelector('.deposit-btn')
+    .addEventListener('click', depositInputHandler);
 document
-    .querySelector('.withdraw')
-    .addEventListener('submit', withdrawInputHandler);
+    .querySelector('.withdraw-btn')
+    .addEventListener('click', withdrawInputHandler);

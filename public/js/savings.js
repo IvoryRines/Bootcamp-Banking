@@ -20,6 +20,8 @@ const transferInputHandler = async (event) => {
       alert('Failed to transfer money');
     }
   }
+
+  location.reload();
 };
 
 const depositInputHandler = async (event) => {
@@ -28,7 +30,7 @@ const depositInputHandler = async (event) => {
   const deposit = document.querySelector('.deposit-input').value.trim();
   const balance = document.querySelector('.span').textContent.trim();
 
-  const newBalance = Number(balance) - Number(deposit);
+  const newBalance = Number(balance) + Number(deposit);
 
   if (deposit) {
     const response = await fetch('/api/accounts/savings', {
@@ -71,11 +73,11 @@ const withdrawInputHandler = async (event) => {
 };
 
 document
-  .querySelector('.transfer')
-  .addEventListener('submit', transferInputHandler);
+  .querySelector('.transfer-btn')
+  .addEventListener('click', transferInputHandler);
 document
-  .querySelector('.deposit')
-  .addEventListener('submit', depositInputHandler);
+  .querySelector('.deposit-btn')
+  .addEventListener('click', depositInputHandler);
 document
-  .querySelector('.withdraw')
-  .addEventListener('submit', withdrawInputHandler);
+  .querySelector('.withdraw-btn')
+  .addEventListener('click', withdrawInputHandler);

@@ -9,11 +9,11 @@ router.post('/checking', withAuth, async (req, res) => {
       account_number: req.body.account_number,
       account_balance: req.body.account_balance,
     });
+    res.status(200).json(dbCheckingData);
   } catch (err) {
       console.log(err);
       res.status(500).json(err);
   }
-  res.render("checking");
 });
 
 // Create savings account
@@ -23,11 +23,11 @@ router.post('/savings', withAuth, async (req, res) => {
       account_number: req.body.account_number,
       account_balance: req.body.account_balance,
     });
+    res.status(200).json(dbSavingsData);
   } catch (err) {
       console.log(err);
       res.status(500).json(err);
   }
-  res.render("savings");
 });
 
 // Deposit and withdraw money to and from checking account
@@ -43,11 +43,11 @@ router.put('/checking', withAuth, async (req, res) => {
           },
         }      
       );
+      res.status(200).json(dbCheckingData);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
-    res.redirect("/checking");
 });
 
 
@@ -75,20 +75,23 @@ router.put('/checking/transfer', withAuth, async (req, res) => {
 
     transferData.account_balance = req.body.transfer + transferData.account_balance
 
-    const dbSavingsData = await Checking.update(
-      transferData,
+    const dbSavingsData = await Savings.update(
+      {
+        account_balance: transferData.account_balance
+      },
       {
         where: {
           user_id: req.session.user_id,
         },
       }      
     );
+
+    res.status(200).json(dbCheckingData);
     
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-  res.redirect("/checking");
 });
   
 // Withdraw and deposit money to and from savings account
@@ -100,16 +103,15 @@ router.put('/savings', withAuth, async (req, res) => {
       },
       {
         where: {
-          id: req.params.id,
+          user_id: req.session.user_id,
         },
       }
     );
-    
+    res.status(200).json(dbSavingsData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-  res.redirect("/savings");
 });
 
 // Transfer money from savings to checking
@@ -137,19 +139,22 @@ router.put('/savings/transfer', withAuth, async (req, res) => {
     transferData.account_balance = req.body.transfer + transferData.account_balance
 
     const dbCheckingData = await Checking.update(
-      transferData,
+      {
+        account_balance: transferData.account_balance
+      },
       {
         where: {
           user_id: req.session.user_id,
         },
       }      
     );
+
+    res.status(200).json(dbSavingsData);
     
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-  res.redirect("/savings");
 });
 
 module.exports = router;

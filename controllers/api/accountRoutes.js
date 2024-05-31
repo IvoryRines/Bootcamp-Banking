@@ -3,7 +3,7 @@ const { Checking, Savings } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Create checking account
-router.post('/checking', async (req, res) => {
+router.post('/checking', withAuth, async (req, res) => {
   try {
     const dbCheckingData = await Checking.create({
       account_number: req.body.account_number,
@@ -17,7 +17,7 @@ router.post('/checking', async (req, res) => {
 });
 
 // Create savings account
-router.post('/savings', async (req, res) => {
+router.post('/savings', withAuth, async (req, res) => {
   try {
     const dbSavingsData = await Savings.create({
       account_number: req.body.account_number,
@@ -31,7 +31,7 @@ router.post('/savings', async (req, res) => {
 });
 
 // Deposit and withdraw money to and from checking account
-router.put('/checking', async (req, res) => {
+router.put('/checking', withAuth, async (req, res) => {
     try {
       const dbCheckingData = await Checking.update(
         {
@@ -52,7 +52,7 @@ router.put('/checking', async (req, res) => {
 
 
 // Transfer money from checking to savings
-router.put('/checking/transfer', async (req, res) => {
+router.put('/checking/transfer', withAuth, async (req, res) => {
   try {
     const dbCheckingData = await Checking.update(
       {
@@ -92,7 +92,7 @@ router.put('/checking/transfer', async (req, res) => {
 });
   
 // Withdraw and deposit money to and from savings account
-router.put('/savings', async (req, res) => {
+router.put('/savings', withAuth, async (req, res) => {
   try {
     const dbSavingsData = await Savings.update(
       {
@@ -113,7 +113,7 @@ router.put('/savings', async (req, res) => {
 });
 
 // Transfer money from savings to checking
-router.put('/savings/transfer', async (req, res) => {
+router.put('/savings/transfer', withAuth, async (req, res) => {
   try {
     const dbSavingsData = await Savings.update(
       {

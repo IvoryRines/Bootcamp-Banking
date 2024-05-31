@@ -18,6 +18,9 @@ Savings.init(
     account_balance: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        min: 0
+      },
     },
     // last_transaction_date: {
     //   type: DataTypes.DATE,

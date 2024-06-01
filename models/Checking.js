@@ -17,7 +17,7 @@ Checking.init(
     },
     account_balance: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         min: 0
       },

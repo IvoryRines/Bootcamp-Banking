@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Checking, Savings } = require("../models");
 const withAuth = require("../utils/auth");
+
 router.get("/", withAuth, async (req, res) => {
   try {
     // const userData = await User.findAll({
@@ -10,28 +11,40 @@ router.get("/", withAuth, async (req, res) => {
     // const users = userData.map((project) => project.get({ plain: true }));
 
     // use sequelize and pull the data for the checking & savings where the userId mataches what is in session
+    // const userData = await User.findAll({
+    //   attributes: { exclude: ["password"] },
+    //   order: [["name", "ASC"]],
+    // });
+    // const users = userData.map((project) => project.get({ plain: true }));
 
-    const checkingData = await Checking.findOne({
-      where: {
-        user_id: req.session.user_id,
-      },
-    });
+    // use sequelize and pull the data for the checking & savings where the userId mataches what is in session
+    // const checkingData = await Checking.findOne({
+    //   where: {
+    //     user_id: req.session.user_id,
+    //   },
+    // });
 
-    const checking = checkingData.get({ plain: true });
+    // const checking = checkingData.get({ plain: true });
 
-    const savingsData = await Savings.findOne({
-      where: {
-        user_id: req.session.user_id,
-      },
-    });
+    // res.render("accounts", {
+    //   checking,
+    //   logged_in: req.session.logged_in,
+    // });
 
-    const savings = savingsData.get({ plain: true });
+    // const savingsData = await Savings.findOne({
+    //   where: {
+    //     user_id: req.session.user_id,
+    //   },
+    // });
+
+    // const savings = savingsData.get({ plain: true });
 
     res.render("homepage", {
-      savings,
-      checking,
+      // checking, 
+      // savings,
       logged_in: req.session.logged_in,
     });
+
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,7 +65,7 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.get("/checking", async (req, res) => {
+router.get("/checking", withAuth, async (req, res) => {
   try {
     const checkingData = await Checking.findOne({
       where: {
@@ -69,7 +82,7 @@ router.get("/checking", async (req, res) => {
   }
 });
 
-router.get("/savings", async (req, res) => {
+router.get("/savings", withAuth, async (req, res) => {
   try {
     const savingsData = await Savings.findOne({
       where: {

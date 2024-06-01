@@ -5,11 +5,28 @@ const withAuth = require('../../utils/auth');
 // Create checking account
 router.post('/checking', withAuth, async (req, res) => {
   try {
-    const dbCheckingData = await Checking.create({
-      account_number: req.body.account_number,
-      account_balance: req.body.account_balance,
-    });
-    res.status(200).json(dbCheckingData);
+    const dbCheckingData = await Checking.findOne(
+      {
+        where: {
+          user_id: req.session.user_id,
+        }
+      }
+    )
+
+    if (dbCheckingData) {
+      res
+        .status(400)
+        .json({ message: "You already have a checking account" });
+      return;
+    } else {
+      const dbCreateCheckingData = await Checking.create({
+        account_number: req.body.accountNumber,
+        account_balance: req.body.accountBalance,
+        user_id: req.session.user_id
+      });
+      res.status(200).json(dbCreateCheckingData);
+    }
+
   } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -19,11 +36,28 @@ router.post('/checking', withAuth, async (req, res) => {
 // Create savings account
 router.post('/savings', withAuth, async (req, res) => {
   try {
-    const dbSavingsData = await Savings.create({
-      account_number: req.body.account_number,
-      account_balance: req.body.account_balance,
-    });
-    res.status(200).json(dbSavingsData);
+    const dbSavingsData = await Savings.findOne(
+      {
+        where: {
+          user_id: req.session.user_id,
+        }
+      }
+    )
+
+    if (dbSavingsData) {
+      res
+        .status(400)
+        .json({ message: "You already have a savings account" });
+      return;
+    } else {
+      const dbCreateSavingsData = await Savings.create({
+        account_number: req.body.accountNumber,
+        account_balance: req.body.accountBalance,
+        user_id: req.session.user_id
+      });
+      res.status(200).json(dbCreateSavingsData);
+    }
+
   } catch (err) {
       console.log(err);
       res.status(500).json(err);

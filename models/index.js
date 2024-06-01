@@ -9,7 +9,7 @@ User.hasOne(Checking, {
 
 User.hasOne(Savings, {
   foreignKey: "user_id",
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
 });
 
 Checking.belongsTo(User, {

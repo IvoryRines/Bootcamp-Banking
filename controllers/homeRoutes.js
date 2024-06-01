@@ -105,6 +105,8 @@ router.get("/newuser", withAuth, (req, res) => {
 router.get("/opensavings", withAuth, (req, res) => {
   res.render("opensavings", {
     logged_in: req.session.logged_in,
+    // isHomepage should get renamed. it excludes these pages from having the background image and i didn't realize i needed to apply it to the new user page as well.
+    isHomepage: true,
   });
 });
 
@@ -113,18 +115,6 @@ router.get("/openchecking", withAuth, (req, res) => {
     logged_in: req.session.logged_in,
     // isHomepage should get renamed. it excludes these pages from having the background image and i didn't realize i needed to apply it to the new user page as well.
     isHomepage: true,
-  });
-});
-
-router.get("/opensavings", withAuth, (req, res) => {
-  res.render("opensavings", {
-    logged_in: req.session.logged_in,
-  });
-});
-
-router.get("/openchecking", withAuth, (req, res) => {
-  res.render("openchecking", {
-    logged_in: req.session.logged_in,
   });
 });
 module.exports = router;

@@ -23,6 +23,7 @@ router.get("/", withAuth, async (req, res) => {
       savings,
       checking,
       logged_in: req.session.logged_in,
+      isHomepage: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -42,7 +43,8 @@ router.get("/register", (req, res) => {
   }
   res.render("register");
 });
-router.get("/checking", withAuth, async (req, res) => {  // Added withAuth middleware here for consistency
+router.get("/checking", withAuth, async (req, res) => {
+  // Added withAuth middleware here for consistency
   try {
     const checkingData = await Checking.findOne({
       where: {
@@ -50,7 +52,9 @@ router.get("/checking", withAuth, async (req, res) => {  // Added withAuth middl
       },
     });
     if (!checkingData) {
-      return res.status(404).json({ message: "No checking account found for this user" });
+      return res
+        .status(404)
+        .json({ message: "No checking account found for this user" });
     }
     const checking = checkingData.get({ plain: true });
     res.render("checking", {
@@ -61,7 +65,8 @@ router.get("/checking", withAuth, async (req, res) => {  // Added withAuth middl
     res.status(500).json(err);
   }
 });
-router.get("/savings", withAuth, async (req, res) => {  // Added withAuth middleware here for consistency
+router.get("/savings", withAuth, async (req, res) => {
+  // Added withAuth middleware here for consistency
   try {
     const savingsData = await Savings.findOne({
       where: {
@@ -69,7 +74,9 @@ router.get("/savings", withAuth, async (req, res) => {  // Added withAuth middle
       },
     });
     if (!savingsData) {
-      return res.status(404).json({ message: "No savings account found for this user" });
+      return res
+        .status(404)
+        .json({ message: "No savings account found for this user" });
     }
     const savings = savingsData.get({ plain: true });
     res.render("savings", {
@@ -84,6 +91,8 @@ router.get("/savings", withAuth, async (req, res) => {  // Added withAuth middle
 router.get("/newuser", withAuth, (req, res) => {
   res.render("newuser", {
     logged_in: req.session.logged_in,
+    // isHomepage should get renamed. it excludes these pages from having the background image and i didn't realize i needed to apply it to the new user page as well.
+    isHomepage: true,
   });
 });
 module.exports = router;

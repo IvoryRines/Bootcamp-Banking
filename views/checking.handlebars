@@ -1,6 +1,6 @@
 <h2>Total Checking</h2>
 
-<section class="checking">
+<section class="checking apply-background">
   <div class="checking-account">
     <container>
       <h3 class="balance">Available Balance:
@@ -31,10 +31,16 @@
         >Withdraw</button>
       </div>
     </div>
-    <h3>Last transaction was at <span class="update">{{checking.updatedAt}}</span></h3>
-    <h3>Opened on <span class="create">{{checking.createdAt}}</span></h3>
+    <h3>Last transaction
+      <span class="update">{{checking.updatedAt}}</span></h3>
+    <h3>Account opened on
+      <span class="create">{{checking.createdAt}}</span></h3>
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js" integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+  integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+  crossorigin="anonymous"
+></script>
 <script src="/js/checking.js"></script>

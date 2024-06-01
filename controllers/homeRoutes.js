@@ -16,6 +16,12 @@ router.get("/", withAuth, async (req, res) => {
     if (!checkingData && !savingsData) {
       // If no checking and no savings account found, redirect to newuser page
       return res.redirect("/newuser");
+    } else if (checkingData && !savingsData) {
+      // If no checking and no savings account found, redirect to newuser page
+      return res.redirect("/opensavings");
+    } else if (!checkingData && savingsData) {
+      // If no checking and no savings account found, redirect to newuser page
+      return res.redirect("/openchecking");
     }
     const checking = checkingData ? checkingData.get({ plain: true }) : null;
     const savings = savingsData ? savingsData.get({ plain: true }) : null;
@@ -83,6 +89,18 @@ router.get("/savings", withAuth, async (req, res) => {  // Added withAuth middle
 // Route for newuser page
 router.get("/newuser", withAuth, (req, res) => {
   res.render("newuser", {
+    logged_in: req.session.logged_in,
+  });
+});
+
+router.get("/opensavings", withAuth, (req, res) => {
+  res.render("opensavings", {
+    logged_in: req.session.logged_in,
+  });
+});
+
+router.get("/openchecking", withAuth, (req, res) => {
+  res.render("openchecking", {
     logged_in: req.session.logged_in,
   });
 });

@@ -3,30 +3,22 @@ const { User, Checking, Savings } = require("../models");
 const withAuth = require("../utils/auth");
 router.get("/", withAuth, async (req, res) => {
   try {
-    // const userData = await User.findAll({
-    //   attributes: { exclude: ["password"] },
-    //   order: [["name", "ASC"]],
-    // });
-    // const users = userData.map((project) => project.get({ plain: true }));
-
-    // use sequelize and pull the data for the checking & savings where the userId mataches what is in session
-
     const checkingData = await Checking.findOne({
       where: {
         user_id: req.session.user_id,
       },
     });
-
-    const checking = checkingData.get({ plain: true });
-
     const savingsData = await Savings.findOne({
       where: {
         user_id: req.session.user_id,
       },
     });
-
-    const savings = savingsData.get({ plain: true });
-
+    if (!checkingData && !savingsData) {
+      // If no checking and no savings account found, redirect to newuser page
+      return res.redirect("/newuser");
+    }
+    const checking = checkingData ? checkingData.get({ plain: true }) : null;
+    const savings = savingsData ? savingsData.get({ plain: true }) : null;
     res.render("homepage", {
       savings,
       checking,
@@ -43,7 +35,6 @@ router.get("/login", (req, res) => {
   }
   res.render("login");
 });
-
 router.get("/register", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
@@ -51,14 +42,16 @@ router.get("/register", (req, res) => {
   }
   res.render("register");
 });
-
-router.get("/checking", async (req, res) => {
+router.get("/checking", withAuth, async (req, res) => {  // Added withAuth middleware here for consistency
   try {
     const checkingData = await Checking.findOne({
       where: {
         user_id: req.session.user_id,
       },
     });
+    if (!checkingData) {
+      return res.status(404).json({ message: "No checking account found for this user" });
+    }
     const checking = checkingData.get({ plain: true });
     res.render("checking", {
       checking,
@@ -68,14 +61,16 @@ router.get("/checking", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-router.get("/savings", async (req, res) => {
+router.get("/savings", withAuth, async (req, res) => {  // Added withAuth middleware here for consistency
   try {
     const savingsData = await Savings.findOne({
       where: {
         user_id: req.session.user_id,
       },
     });
+    if (!savingsData) {
+      return res.status(404).json({ message: "No savings account found for this user" });
+    }
     const savings = savingsData.get({ plain: true });
     res.render("savings", {
       savings,
@@ -85,5 +80,10 @@ router.get("/savings", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// Route for newuser page
+router.get("/newuser", withAuth, (req, res) => {
+  res.render("newuser", {
+    logged_in: req.session.logged_in,
+  });
+});
 module.exports = router;

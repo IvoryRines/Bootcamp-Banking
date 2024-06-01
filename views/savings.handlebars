@@ -31,9 +31,10 @@
         >Withdraw</button>
       </div>
     </div>
-    <h3>Last transaction on {{savings.updatedAt}}</h3>
-    <h3>Account opened {{savings.createdAt}}</h3>
+    <h3>Last transaction was at <span class="update">{{savings.updatedAt}}</span></h3>
+    <h3>Opened on <span class="create">{{savings.createdAt}}</span></h3>
   </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js" integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 <script src="/js/savings.js"></script>

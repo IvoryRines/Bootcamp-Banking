@@ -19,14 +19,14 @@ const transferInputHandler = async (event) => {
     } else {
       alert("Failed to transfer money");
     }
-  }
 };
+}
 
 const depositInputHandler = async (event) => {
-  event.preventDefault();
-
-  const deposit = document.querySelector(".deposit-input").value.trim();
-  const balance = document.querySelector(".span").textContent.trim();
+    event.preventDefault();
+  
+    const deposit = document.querySelector('.deposit-input').value.trim();
+    const balance = document.querySelector('.span').textContent.trim();
 
   const newBalance = Number(balance) + Number(deposit);
 
@@ -43,8 +43,8 @@ const depositInputHandler = async (event) => {
     } else {
       alert("Failed to deposit money");
     }
-  }
 };
+}
 
 const withdrawInputHandler = async (event) => {
   event.preventDefault();
@@ -67,8 +67,32 @@ const withdrawInputHandler = async (event) => {
     } else {
       alert("Failed to withdraw money");
     }
-  }
 };
+}
+
+const dateHandler = () => {
+    let updatedAt = document.querySelector('.update').textContent.trim();
+    let updateTime = dayjs(updatedAt).format('h:mm A');
+    let updateDate = dayjs(updatedAt).format('MMMM D, YYYY');
+    let today = dayjs().format('MMMM D, YYYY');
+    let todayDate = dayjs();
+    let difference = todayDate.diff(updateDate, 'days');
+    
+    if (updateDate == today) {
+      document.querySelector('.update').innerHTML = `${updateTime} today`
+    } else if (difference == 1) {
+      document.querySelector('.update').innerHTML = `${updateTime} yesterday`
+    } else {
+      document.querySelector('.update').innerHTML = `${updateTime} on ${updateDate}`
+    }
+
+    let createdAt = document.querySelector('.create').textContent.trim();
+    let createTime = dayjs(createdAt);
+    console.log(createTime);
+    document.querySelector('.create').innerHTML = createTime.format('MMMM D, YYYY');
+};
+
+dateHandler();
 
 document
   .querySelector(".transfer-btn")

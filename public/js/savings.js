@@ -1,23 +1,23 @@
 const transferInputHandler = async (event) => {
   event.preventDefault();
 
-  const transfer = document.querySelector('.transfer-input').value.trim();
-  const balance = document.querySelector('.span').textContent.trim();
+  const transfer = document.querySelector(".transfer-input").value.trim();
+  const balance = document.querySelector(".span").textContent.trim();
 
   const newBalance = Number(balance) - Number(transfer);
 
   if (transfer) {
-    const response = await fetch('/api/accounts/savings/transfer', {
-      method: 'PUT',
+    const response = await fetch("/api/accounts/savings/transfer", {
+      method: "PUT",
       body: JSON.stringify({ newBalance, transfer: Number(transfer) }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace('/savings');
-      alert('Transfer successful!');
+      document.location.replace("/savings");
+      alert("Transfer successful!");
     } else {
-      alert('Failed to transfer money');
+      alert("Failed to transfer money");
     }
   }
 
@@ -27,23 +27,23 @@ const transferInputHandler = async (event) => {
 const depositInputHandler = async (event) => {
   event.preventDefault();
 
-  const deposit = document.querySelector('.deposit-input').value.trim();
-  const balance = document.querySelector('.span').textContent.trim();
+  const deposit = document.querySelector(".deposit-input").value.trim();
+  const balance = document.querySelector(".span").textContent.trim();
 
   const newBalance = Number(balance) + Number(deposit);
 
   if (deposit) {
-    const response = await fetch('/api/accounts/savings', {
-      method: 'PUT',
+    const response = await fetch("/api/accounts/savings", {
+      method: "PUT",
       body: JSON.stringify({ newBalance }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace('/savings');
-      alert('Deposit successful!');
+      document.location.replace("/savings");
+      alert("Deposit successful!");
     } else {
-      alert('Failed to deposit money');
+      alert("Failed to deposit money");
     }
   }
 };
@@ -51,33 +51,33 @@ const depositInputHandler = async (event) => {
 const withdrawInputHandler = async (event) => {
   event.preventDefault();
 
-  const withdraw = document.querySelector('.withdraw-input').value.trim();
-  const balance = document.querySelector('.span').textContent.trim();
+  const withdraw = document.querySelector(".withdraw-input").value.trim();
+  const balance = document.querySelector(".span").textContent.trim();
 
   const newBalance = Number(balance) - Number(withdraw);
 
   if (withdraw) {
-    const response = await fetch('/api/accounts/savings', {
-      method: 'PUT',
+    const response = await fetch("/api/accounts/savings", {
+      method: "PUT",
       body: JSON.stringify({ newBalance }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace('/savings');
-      alert('Withdraw successful!');
+      document.location.replace("/savings");
+      alert("Withdrawal successful!");
     } else {
-      alert('Failed to withdraw money');
+      alert("Failed to withdraw money");
     }
   }
 };
 
 document
-  .querySelector('.transfer-btn')
-  .addEventListener('click', transferInputHandler);
+  .querySelector(".transfer-btn")
+  .addEventListener("click", transferInputHandler);
 document
-  .querySelector('.deposit-btn')
-  .addEventListener('click', depositInputHandler);
+  .querySelector(".deposit-btn")
+  .addEventListener("click", depositInputHandler);
 document
-  .querySelector('.withdraw-btn')
-  .addEventListener('click', withdrawInputHandler);
+  .querySelector(".withdraw-btn")
+  .addEventListener("click", withdrawInputHandler);

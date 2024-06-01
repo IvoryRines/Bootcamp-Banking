@@ -3,22 +3,32 @@
 <section class="savings">
   <div class="savings-account">
     <container>
-        <h3 class="balance">Available Balance: <span class="span">{{savings.account_balance}}</span></h3>
-        <h3>Account Number: {{savings.account_number}}</h3>
+      <h3 class="balance">Available Balance:
+        <span class="span">{{savings.account_balance}}</span></h3>
+      <h3>Account Number: {{savings.account_number}}</h3>
     </container>
     <div class="manage">
       <h3>Manage Account</h3>
       <div id="transfer">
-        <input class="transfer-input"/>
-        <button class="transfer-btn btn btn-primary" type="click">Transfer</button>
+        <input class="transfer-input" />
+        <button
+          class="transfer-btn btn btn-primary"
+          type="click"
+        >Transfer</button>
       </div>
       <div class="deposit">
-        <input class="deposit-input"/>
-        <button class="deposit-btn btn btn-primary" type="click">Deposit</button>
+        <input class="deposit-input" />
+        <button
+          class="deposit-btn btn btn-primary"
+          type="click"
+        >Deposit</button>
       </div>
       <div class="withdraw">
-        <input class="withdraw-input"/>
-        <button class="withdraw-btn btn btn-primary" type="click">Withdraw</button>
+        <input class="withdraw-input" />
+        <button
+          class="withdraw-btn btn btn-primary"
+          type="click"
+        >Withdraw</button>
       </div>
     </div>
     <h3>Last transaction was at <span class="update">{{savings.updatedAt}}</span></h3>

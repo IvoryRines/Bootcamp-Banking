@@ -1,8 +1,10 @@
 const openCheckingHandler = async (event) => {
     event.preventDefault();
 
-    // TODO: make accountNumber a random 9 digit number generator
-    const accountNumber = 1;
+    var minm = 100000000;
+    var maxm = 999999999;
+    const accountNumber = Math.floor(Math .random() * (maxm - minm + 1)) + minm; 
+
     const accountBalance = 0;
 
     const response = await fetch('/api/accounts/checking', {
@@ -18,13 +20,15 @@ const openCheckingHandler = async (event) => {
         alert('Failed to open account. You may have already created one.');
         document.location.replace('/checking');
     }
-
 };
 
 const openSavingsHandler = async (event) => {
     event.preventDefault();
 
-    const accountNumber = 2;
+    var minm = 100000000;
+    var maxm = 999999999;
+    const accountNumber = Math.floor(Math .random() * (maxm - minm + 1)) + minm; 
+
     const accountBalance = 0;
 
     const response = await fetch('/api/accounts/savings', {

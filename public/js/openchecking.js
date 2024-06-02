@@ -1,9 +1,11 @@
 const openCheckingHandler = async (event) => {
   event.preventDefault();
 
-  // TODO: make accountNumber a random 9 digit number generator
-  const accountNumber = 1111112;
-  const accountBalance = 0;
+    var minm = 100000000;
+    var maxm = 999999999;
+    const accountNumber = Math.floor(Math .random() * (maxm - minm + 1)) + minm; 
+
+    const accountBalance = 0;
 
   const response = await fetch("/api/accounts/checking", {
     method: "POST",

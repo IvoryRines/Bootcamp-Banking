@@ -1,8 +1,11 @@
 const openSavingsHandler = async (event) => {
   event.preventDefault();
 
-  const accountNumber = 2222223;
-  const accountBalance = 0;
+    var minm = 100000000;
+    var maxm = 999999999;
+    const accountNumber = Math.floor(Math .random() * (maxm - minm + 1)) + minm; 
+
+    const accountBalance = 0;
 
   const response = await fetch("/api/accounts/savings", {
     method: "POST",

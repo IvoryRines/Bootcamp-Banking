@@ -1,6 +1,7 @@
 const openCheckingHandler = async (event) => {
     event.preventDefault();
 
+    // TODO: make accountNumber a random 9 digit number generator
     const accountNumber = 1;
     const accountBalance = 0;
 

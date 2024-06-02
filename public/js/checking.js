@@ -92,7 +92,19 @@ const dateHandler = () => {
     document.querySelector('.create').innerHTML = createTime.format('MMMM D, YYYY');
 };
 
+const currencyHandler = () => {
+  const balance = document.querySelector(".span").textContent.trim();
+
+  const balanceNumber = Number(balance);
+
+  const formattedBalance = balanceNumber.toLocaleString('en-US', {minimumFractionDigits: 2});
+
+  document.querySelector('.span').innerHTML = formattedBalance;
+};
+
 dateHandler();
+currencyHandler();
+
 
 document
   .querySelector(".transfer-btn")

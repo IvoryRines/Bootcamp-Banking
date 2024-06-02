@@ -16,16 +16,12 @@ Checking.init(
       allowNull: false,
     },
     account_balance: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: true,
       validate: {
         min: 0
       },
     },
-    // last_transaction_date: {
-    //   type: DataTypes.DATE,
-    //   allowNull: false,
-    // },
     user_id: {
       type: DataTypes.INTEGER,
       references: {

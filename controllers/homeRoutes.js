@@ -17,10 +17,10 @@ router.get("/", withAuth, async (req, res) => {
       // If no checking and no savings account found, redirect to newuser page
       return res.redirect("/newuser");
     } else if (checkingData && !savingsData) {
-      // If no checking and no savings account found, redirect to newuser page
+      // If checking found and no savings account found, redirect to opensavings page
       return res.redirect("/opensavings");
     } else if (!checkingData && savingsData) {
-      // If no checking and no savings account found, redirect to newuser page
+      // If no checking found but savings account is found, redirect to openchecking page
       return res.redirect("/openchecking");
     }
     const checking = checkingData ? checkingData.get({ plain: true }) : null;
@@ -40,14 +40,18 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login");
+  res.render("login", {
+    isLoginPage: true,
+  });
 });
 router.get("/register", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
-  res.render("register");
+  res.render("register", {
+    isRegisterPage: true,
+  });
 });
 router.get("/checking", withAuth, async (req, res) => {
   // Added withAuth middleware here for consistency
@@ -58,9 +62,8 @@ router.get("/checking", withAuth, async (req, res) => {
       },
     });
     if (!checkingData) {
-      return res
-        .status(404)
-        .json({ message: "No checking account found for this user" });
+      res.redirect("/");
+      return;
     }
     const checking = checkingData.get({ plain: true });
     res.render("checking", {
@@ -80,9 +83,8 @@ router.get("/savings", withAuth, async (req, res) => {
       },
     });
     if (!savingsData) {
-      return res
-        .status(404)
-        .json({ message: "No savings account found for this user" });
+      res.redirect("/");
+      return;
     }
     const savings = savingsData.get({ plain: true });
     res.render("savings", {

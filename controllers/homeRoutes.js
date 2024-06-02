@@ -40,14 +40,18 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login");
+  res.render("login", {
+    isLoginPage: true,
+  });
 });
 router.get("/register", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
-  res.render("register");
+  res.render("register", {
+    isRegisterPage: true,
+  });
 });
 router.get("/checking", withAuth, async (req, res) => {
   // Added withAuth middleware here for consistency

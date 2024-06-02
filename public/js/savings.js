@@ -4,21 +4,46 @@ const transferInputHandler = async (event) => {
   const transfer = document.querySelector(".transfer-input").value.trim();
   const balance = document.querySelector(".span").textContent.trim();
 
-  const newBalance = Number(balance) - Number(transfer);
+  console.log(balance);
+  
+  function extractNumber(currencyString) {
+    // Remove any non-numeric characters
+    return parseFloat(currencyString.replace(/[^0-9.-]+/g,""));
+  }
 
-  if (transfer) {
-    const response = await fetch("/api/accounts/savings/transfer", {
+  var number = extractNumber(balance);
+  console.log(number);
+
+  let newBalance = number - Number(transfer);
+
+if (transfer) {
+  const response = await fetch("/api/accounts/savings/transfer", {
+    method: "PUT",
+    body: JSON.stringify({ newBalance, transfer: Number(transfer) }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    document.location.replace("/savings");
+
+    transferCurrency = Number(transfer).toLocaleString('en-US', {minimumFractionDigits: 2})
+
+    alert(`$${transferCurrency} transfer to checking successful!`);
+  } else {
+    newBalance = newBalance + Number(transfer);
+
+    const revertResponse = await fetch("/api/accounts/savings", {
       method: "PUT",
-      body: JSON.stringify({ newBalance, transfer: Number(transfer) }),
+      body: JSON.stringify({ newBalance }),
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.ok) {
-      document.location.replace("/savings");
-      alert("Transfer successful!");
-    } else {
+    if (revertResponse.ok) {
       alert("Failed to transfer money");
+    } else {
+      alert("Failed to revert transfer");
     }
+  }
   }
 
   location.reload();
@@ -30,7 +55,18 @@ const depositInputHandler = async (event) => {
   const deposit = document.querySelector(".deposit-input").value.trim();
   const balance = document.querySelector(".span").textContent.trim();
 
-  const newBalance = Number(balance) + Number(deposit);
+  console.log(balance);
+  
+  function extractNumber(currencyString) {
+    // Remove any non-numeric characters
+    return parseFloat(currencyString.replace(/[^0-9.-]+/g,""));
+  }
+
+  var number = extractNumber(balance);
+  console.log(number);
+
+  const newBalance = number + Number(deposit);
+
 
   if (deposit) {
     const response = await fetch("/api/accounts/savings", {
@@ -41,7 +77,10 @@ const depositInputHandler = async (event) => {
 
     if (response.ok) {
       document.location.replace("/savings");
-      alert("Deposit successful!");
+
+      depositCurrency = Number(deposit).toLocaleString('en-US', {minimumFractionDigits: 2})
+
+      alert(`$${depositCurrency} deposit succesful!`);
     } else {
       alert("Failed to deposit money");
     }
@@ -54,7 +93,17 @@ const withdrawInputHandler = async (event) => {
   const withdraw = document.querySelector(".withdraw-input").value.trim();
   const balance = document.querySelector(".span").textContent.trim();
 
-  const newBalance = Number(balance) - Number(withdraw);
+  console.log(balance);
+  
+  function extractNumber(currencyString) {
+    // Remove any non-numeric characters
+    return parseFloat(currencyString.replace(/[^0-9.-]+/g,""));
+  }
+
+  var number = extractNumber(balance);
+  console.log(number);
+
+  const newBalance = number - Number(withdraw);
 
   if (withdraw) {
     const response = await fetch("/api/accounts/savings", {
@@ -65,7 +114,10 @@ const withdrawInputHandler = async (event) => {
 
     if (response.ok) {
       document.location.replace("/savings");
-      alert("Withdrawal successful!");
+
+      withdrawCurrency = Number(withdraw).toLocaleString('en-US', {minimumFractionDigits: 2})
+
+      alert(`$${withdrawCurrency} withdrawal succesful!`);
     } else {
       alert("Failed to withdraw money");
     }

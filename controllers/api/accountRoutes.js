@@ -86,42 +86,39 @@ router.put("/checking", withAuth, async (req, res) => {
 
 // Transfer money from checking to savings
 router.put("/checking/transfer", withAuth, async (req, res) => {
+  const { newBalance, transfer } = req.body;
+
   try {
-    const dbCheckingData = await Checking.update(
-      {
-        account_balance: req.body.newBalance,
-      },
-      {
+    // Update checking account balance
+    await Checking.update(
+      { account_balance: newBalance },
+      { 
         where: {
-          user_id: req.session.user_id,
-        },
+        user_id: req.session.user_id,
+        }, 
       }
     );
 
-    const transferData = await Savings.findOne({
+    // Update savings account balance
+    const savingsData = await Savings.findOne({ 
       where: {
         user_id: req.session.user_id,
-      },
+      }, 
     });
-
-    transferData.account_balance =
-      req.body.transfer + transferData.account_balance;
-
-    const dbSavingsData = await Savings.update(
-      {
-        account_balance: transferData.account_balance,
-      },
-      {
+    const updatedSavingsBalance = parseFloat(savingsData.account_balance) + parseFloat(transfer);
+    await Savings.update(
+      { account_balance: updatedSavingsBalance },
+      { 
         where: {
-          user_id: req.session.user_id,
-        },
+        user_id: req.session.user_id,
+        }, 
       }
     );
 
-    res.status(200).json(dbCheckingData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    res.status(200).json({ message: "Transfer successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
@@ -147,42 +144,39 @@ router.put("/savings", withAuth, async (req, res) => {
 
 // Transfer money from savings to checking
 router.put("/savings/transfer", withAuth, async (req, res) => {
+  const { newBalance, transfer } = req.body;
+
   try {
-    const dbSavingsData = await Savings.update(
-      {
-        account_balance: req.body.newBalance,
-      },
-      {
+    // Update savings account balance
+    await Savings.update(
+      { account_balance: newBalance },
+      { 
         where: {
-          user_id: req.session.user_id,
-        },
+        user_id: req.session.user_id,
+        }, 
       }
     );
 
-    const transferData = await Checking.findOne({
+    // Update checking account balance
+    const checkingData = await Checking.findOne({ 
       where: {
         user_id: req.session.user_id,
-      },
+      }, 
     });
-
-    transferData.account_balance =
-      req.body.transfer + transferData.account_balance;
-
-    const dbCheckingData = await Checking.update(
-      {
-        account_balance: transferData.account_balance,
-      },
-      {
+    const updatedCheckingBalance = parseFloat(checkingData.account_balance) + parseFloat(transfer);
+    await Checking.update(
+      { account_balance: updatedCheckingBalance },
+      { 
         where: {
-          user_id: req.session.user_id,
-        },
+        user_id: req.session.user_id,
+        }, 
       }
     );
 
-    res.status(200).json(dbSavingsData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    res.status(200).json({ message: "Transfer successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

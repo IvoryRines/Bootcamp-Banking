@@ -1,5 +1,5 @@
 const openCheckingHandler = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
     var minm = 100000000;
     var maxm = 999999999;
@@ -7,22 +7,21 @@ const openCheckingHandler = async (event) => {
 
     const accountBalance = 0;
 
-    const response = await fetch('/api/accounts/checking', {
-        method: 'POST',
-        body: JSON.stringify({ accountNumber, accountBalance }),
-        headers: { 'Content-Type': 'application/json' },
-    });
-        
-    if (response.ok) {
-        document.location.replace('/checking');
-        alert('Checking account opened!');
-    } else {
-        alert('Failed to open account. You may have already created one.');
-        document.location.replace('/checking');
-    }
+  const response = await fetch("/api/accounts/checking", {
+    method: "POST",
+    body: JSON.stringify({ accountNumber, accountBalance }),
+    headers: { "Content-Type": "application/json" },
+  });
 
+  if (response.ok) {
+    document.location.replace("/checking");
+    alert("Checking account opened!");
+  } else {
+    alert("Failed to open account. You may have already created one.");
+    document.location.replace("/checking");
+  }
 };
 
 document
-  .querySelector('#checking')
-  .addEventListener('click', openCheckingHandler);
+  .querySelector("#checking")
+  .addEventListener("click", openCheckingHandler);

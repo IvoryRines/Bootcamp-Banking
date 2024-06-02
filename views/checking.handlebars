@@ -1,13 +1,14 @@
-<h2>Total Checking</h2>
-
 <section class="checking apply-background">
+  <h2>Total Checking</h2>
   <div class="checking-account">
     <container>
-      <h3 class="balance">Available Balance: $<span class="span">{{checking.account_balance}}</span></h3>
-      <h3>Account Number: {{checking.account_number}}</h3>
+      <h4 class="balance">Available Balance: $<span
+          class="span"
+        >{{checking.account_balance}}</span></h4>
+      <h4>Account Number: {{checking.account_number}}</h4>
     </container>
     <div class="manage">
-      <h3>Manage Account</h3>
+      <h4>Manage Account</h4>
       <div class="transfer">
         <input class="transfer-input" />
         <button
@@ -30,10 +31,10 @@
         >Withdraw</button>
       </div>
     </div>
-    <h3 class="transaction">Last transaction
-      <span class="update">{{checking.updatedAt}}</span></h3>
-    <h3>Account opened on
-      <span class="create">{{checking.createdAt}}</span></h3>
+    <h4 class="transaction">Last transaction
+      <span class="update">{{checking.updatedAt}}</span></h4>
+    <h4>Account opened on
+      <span class="create">{{checking.createdAt}}</span></h4>
   </div>
 </section>
 

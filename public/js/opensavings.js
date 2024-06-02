@@ -1,5 +1,5 @@
 const openSavingsHandler = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
     var minm = 100000000;
     var maxm = 999999999;
@@ -7,21 +7,21 @@ const openSavingsHandler = async (event) => {
 
     const accountBalance = 0;
 
-    const response = await fetch('/api/accounts/savings', {
-        method: 'POST',
-        body: JSON.stringify({ accountNumber, accountBalance }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/savings');
-        alert('Savings account opened!');
-      } else {
-        alert('Failed to open account. You may have already created one');
-        document.location.replace('/savings');
-      }
+  const response = await fetch("/api/accounts/savings", {
+    method: "POST",
+    body: JSON.stringify({ accountNumber, accountBalance }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    document.location.replace("/savings");
+    alert("Savings account opened!");
+  } else {
+    alert("Failed to open account. You may have already created one");
+    document.location.replace("/savings");
+  }
 };
 
 document
-  .querySelector('#savings')
-  .addEventListener('click', openSavingsHandler);
+  .querySelector("#savings")
+  .addEventListener("click", openSavingsHandler);

@@ -25,26 +25,42 @@
           {{!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li> --}}
+          {{#unless hasBothAccounts}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Open New Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="open-checking" href="/openchecking">Checking</a>
+              {{#unless hasCheckingAccount}}
+              <a id="open-checking" href="/">Checking</a>
+              {{/unless}}
+              {{#if hasNoAccounts}}
               <div class="dropdown-divider"></div>
-              <a class="open-savings" href="/opensavings">Savings</a>
+              {{/if}}
+              {{#unless hasSavingsAccount}}
+              <a id="open-savings" href="/">Savings</a>
+              {{/unless}}
             </div>
           </li>
+          {{/unless}}
+          {{#if hasAccounts}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               View Accounts
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {{#unless hasNoChecking}}
               <a class="view-checking" href="/checking">Checking</a>
+              {{/unless}}
+              {{#if hasBothAccounts}}
               <div class="dropdown-divider"></div>
+              {{/if}}
+              {{#unless hasNoSavings}}
               <a class="view-savings" href="/savings">Savings</a>
+              {{/unless}}
             </div>
           </li>
+          {{/if}}
           {{!-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
           </li> --}}
@@ -73,9 +89,12 @@
     </div>
   </div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-{{!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j3yS1a9i4SyZf+1XK0C9" crossorigin="anonymous"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/js/logout.js"></script>
+<script src="/js/main.js"></script>
+
+
 </body>
 </html>

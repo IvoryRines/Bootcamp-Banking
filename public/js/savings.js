@@ -21,13 +21,31 @@ const transferInputHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/savings");
+      // document.location.replace("/savings");
+      // I believe this is redundant, since we have the page reload.
 
       transferCurrency = Number(transfer).toLocaleString("en-US", {
         minimumFractionDigits: 2,
       });
 
-      alert(`$${transferCurrency} transfer to checking successful!`);
+      Toastify({
+        text: `$${transferCurrency} transfer to checking successful!`,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        stopOnFocus: true,
+        offset: {
+          y: 50,
+        },
+      }).showToast();
+
+      // Delay the page reload to see the toast message
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+
       localStorage.setItem("lastTransactionStatus", "success");
     } else {
       document.querySelector(".transaction").innerHTML = `Last transfer failed`;
@@ -40,15 +58,41 @@ const transferInputHandler = async (event) => {
       });
 
       if (revertResponse.ok) {
-        alert("Failed to transfer money");
+        Toastify({
+          text: "Failed to transfer money",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          position: "center",
+          backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+          stopOnFocus: true,
+          offset: {
+            y: 50,
+          },
+        }).showToast();
+
+        // Delay the page reload to see the toast message
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+
         localStorage.setItem("lastTransactionStatus", "transfer-failed");
       } else {
-        alert("Failed to revert transfer");
+        Toastify({
+          text: "Failed to transfer money",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          position: "center",
+          backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+          stopOnFocus: true,
+          offset: {
+            y: 50,
+          },
+        }).showToast();
       }
     }
   }
-
-  location.reload();
 };
 
 const depositInputHandler = async (event) => {
@@ -74,18 +118,51 @@ const depositInputHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/savings");
+      // document.location.replace("/savings");
 
       depositCurrency = Number(deposit).toLocaleString("en-US", {
         minimumFractionDigits: 2,
       });
 
-      alert(`$${depositCurrency} deposit succesful!`);
+      Toastify({
+        text: `$${depositCurrency} Deposit succesful!`,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        stopOnFocus: true,
+        offset: {
+          y: 50,
+        },
+      }).showToast();
+
+      // Delay the page reload to see the toast message
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+
       localStorage.setItem("lastTransactionStatus", "success");
     } else {
       document.querySelector(".transaction").innerHTML = `Last deposit failed`;
       localStorage.setItem("lastTransactionStatus", "deposit-failed");
-      alert("Failed to deposit money");
+      Toastify({
+        text: "Failed to deposit money",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        stopOnFocus: true,
+        offset: {
+          y: 50,
+        },
+      }).showToast();
+
+      // Delay the page reload to see the toast message
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     }
   }
 };
@@ -113,19 +190,52 @@ const withdrawInputHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/savings");
+      // document.location.replace("/savings");
 
       withdrawCurrency = Number(withdraw).toLocaleString("en-US", {
         minimumFractionDigits: 2,
       });
 
-      alert(`$${withdrawCurrency} withdrawal succesful!`);
+      Toastify({
+        text: `$${withdrawCurrency} Withdrawal succesful!`,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        stopOnFocus: true,
+        offset: {
+          y: 50,
+        },
+      }).showToast();
+
+      // Delay the page reload to see the toast message
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+
       localStorage.setItem("lastTransactionStatus", "success");
     } else {
       document.querySelector(".transaction").innerHTML =
         `Last withdrawal failed`;
       localStorage.setItem("lastTransactionStatus", "withdrawal-failed");
-      alert("Failed to withdraw money");
+      Toastify({
+        text: "Failed to withdraw money",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        stopOnFocus: true,
+        offset: {
+          y: 50,
+        },
+      }).showToast();
+
+      // Delay the page reload to see the toast message
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     }
   }
 };
@@ -165,7 +275,7 @@ const transactionDateHandler = () => {
 };
 
 const openedDateHandler = () => {
-  let updatedAt = document.querySelector(".update").textContent.trim();
+  let updatedAt = document.querySelector(".update").textContent.trim() ?? null;
   let createdAt = document.querySelector(".create").textContent.trim();
   let createTime = dayjs(createdAt);
 

@@ -7,10 +7,26 @@
   {{#if hasAccounts}}
     <div class="account-links">
       {{#if hasCheckingAccount}}
-        <a href="/checking">Checking {{checking.account_number}}</a>
+      <div class="container">
+        <div class="row justify-content-center card border-primary mb-3" style="max-width: 18rem;">
+          <div class="card-body text-primary">
+            <h5 class="card-title">Checking</h5>
+            <p class="card-text">{{checking.account_number}}</p>
+            <a href="/checking">View Account</a>
+          </div>
+        </div>
+      </div>
       {{/if}}
       {{#if hasSavingsAccount}}
-        <a href="/savings">Savings {{savings.account_number}}</a>
+      <div class="container">
+        <div class="row justify-content-center card border-primary mb-3" style="max-width: 18rem;">
+          <div class="card-body text-primary">
+            <h5 class="card-title">Savings</h5>
+            <p class="card-text">{{savings.account_number}}</p>
+            <a href="/savings">View Account</a>
+          </div>
+        </div>
+      </div>
       {{/if}}
     </div>
   {{/if}}

@@ -61,15 +61,15 @@ Update your personal information and change your password from the account setti
 If you want to contact us 
 
 **Ivory email**:
- replays_flyers_0q@icloud.com
+replays_flyers_0q@icloud.com
 
- **Paul  email**: 
- paulrudd2319@aol.com
+**Paul  email**: 
+paulrudd2319@aol.com
 
- **Sam  email**: 
- sampucket56@yahoo.com
+**Sam  email**: 
+sampucket56@yahoo.com
 
- **Jesse email**:
-  jessecorona70@gmail.com
+**Jesse email**:
+jessecorona70@gmail.com
 
 

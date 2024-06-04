@@ -10,28 +10,35 @@
     <div class="manage">
       <h4>Manage Account</h4>
       <div id="transfermb-3">
-        <input class="transfer-input mb-3"placeholder=" transfered ammount to checkings account" />
+        <input
+          class="transfer-input mb-3"
+          placeholder="Enter Amount to Transfer to Checking"
+        />
         <button
           class="transfer-btn btn btn-primary"
           type="click"
         >Transfer</button>
       </div>
       <div class="deposit mb-3">
-        <input class="deposit-input mb-3"  placeholder="Enter deposit amount"/>
+        <input class="deposit-input mb-3" placeholder="Enter Deposit Amount" />
         <button
           class="deposit-btn btn btn-primary"
           type="click"
         >Deposit</button>
       </div>
       <div class="withdrawal mb-3">
-        <input class="withdrawal-input mb-3" placeholder="Enter withdrawal amount" />
+        <input
+          class="withdrawal-input mb-3"
+          placeholder="Enter Withdrawal Amount"
+        />
         <button
           class="withdrawal-btn btn btn-primary"
           type="click"
         >Withdraw</button>
       </div>
     </div>
-    <h4 class="transaction">Last transaction <span class="update">{{savings.updatedAt}}</span></h4>
+    <h4 class="transaction">Last transaction
+      <span class="update">{{savings.updatedAt}}</span></h4>
     <h4>Account opened on <span class="create">{{savings.createdAt}}</span></h4>
   </div>
 </section>

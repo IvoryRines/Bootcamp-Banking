@@ -4,9 +4,73 @@
     alt="Mobile Banking"
     class="responsive-img"
   />
-  <div class="account-links">
-    <a href="/checking">Checking {{checking.account_number}}</a>
-    <a href="/savings">Savings {{savings.account_number}}</a>
-  </div>
+  {{#if hasAccounts}}
+    <div class="account-links">
+      {{#if hasCheckingAccount}}
+        <a href="/checking">Checking {{checking.account_number}}</a>
+      {{/if}}
+      {{#if hasSavingsAccount}}
+        <a href="/savings">Savings {{savings.account_number}}</a>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#if hasNoAccounts}}
+    <section class="container" id="homepage-container">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#modal"
+      >Open an Account</button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Select Account Type</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                id="checking"
+              >Checking</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                id="savings"
+              >Savings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{/if}}
 </section>
-{{! <script src="/js/homepage.js"></script> }}
+{{#unless hasBothAccounts}}
+  {{#unless hasAccounts}}
+    <script src="/js/homepage.js"></script>
+  {{/unless}}
+{{/unless}}
+{{! <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> }}

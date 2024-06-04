@@ -181,3 +181,4 @@ Please reach out to our team of developers with any questions or feedback you ma
 - [Paul Sherrill](https://github.com/pauldsherrill)
 - [Ivory Rines](https://github.com/IvoryRines)
 - [Jesse Corona](https://github.com/Jesse2919)
+- [Samuel Cox](https://github.com/Swemee)

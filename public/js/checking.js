@@ -166,7 +166,7 @@ const transactionDateHandler = () => {
 };
 
 const openedDateHandler = () => {
-  let updatedAt = document.querySelector(".update").textContent.trim();
+  let updatedAt = document.querySelector(".update").textContent.trim() ?? null;
   let createdAt = document.querySelector(".create").textContent.trim();
   let createTime = dayjs(createdAt);
   document.querySelector(".create").innerHTML =

@@ -1,4 +1,4 @@
-const openSavingsHandler = async (event) => {
+const openSavings = async (event) => {
     event.preventDefault();
   
       var minm = 100000000;
@@ -24,4 +24,4 @@ const openSavingsHandler = async (event) => {
 
   document
     .querySelector("#open-savings")
-    .addEventListener("click", openSavingsHandler);
+    .addEventListener("click", openSavings);

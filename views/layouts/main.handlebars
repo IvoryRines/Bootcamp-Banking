@@ -98,10 +98,18 @@
 {{/if}}
 {{#unless hasBothAccounts}}
 {{#unless hasCheckingAccount}}
+{{#if isLoginPage}}
+{{#if isRegisterPage}}
 <script src="/js/open-checking.js"></script>
+{{/if}}
+{{/if}}
 {{/unless}}
 {{#unless hasSavingsAccount}}
+{{#if isLoginPage}}
+{{#if isRegisterPage}}
 <script src="/js/open-savings.js"></script>
+{{/if}}
+{{/if}}
 {{/unless}}
 {{/unless}}
 

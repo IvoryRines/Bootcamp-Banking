@@ -5,28 +5,24 @@
     class="responsive-img"
   />
   {{#if hasAccounts}}
-    <div class="account-links">
+    <div class="container d-flex justify-content-center">
       {{#if hasCheckingAccount}}
-      <div class="container">
-        <div class="row justify-content-center card border-primary mb-3" style="max-width: 18rem;">
+        <div class="card border-primary mb-3 mx-2" style="max-width: 18rem;">
           <div class="card-body text-primary">
             <h5 class="card-title">Checking</h5>
             <p class="card-text">{{checking.account_number}}</p>
             <a href="/checking">View Account</a>
           </div>
         </div>
-      </div>
       {{/if}}
       {{#if hasSavingsAccount}}
-      <div class="container">
-        <div class="row justify-content-center card border-primary mb-3" style="max-width: 18rem;">
+        <div class="card border-primary mb-3 mx-2" style="max-width: 18rem;">
           <div class="card-body text-primary">
             <h5 class="card-title">Savings</h5>
             <p class="card-text">{{savings.account_number}}</p>
             <a href="/savings">View Account</a>
           </div>
         </div>
-      </div>
       {{/if}}
     </div>
   {{/if}}

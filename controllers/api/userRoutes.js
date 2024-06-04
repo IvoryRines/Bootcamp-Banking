@@ -1,13 +1,13 @@
 const router = require("express").Router();
-const { User, Checking, Savings }= require("../../models");
+const { User, Checking, Savings } = require("../../models");
 
 // CREATE new user
 router.post("/register", async (req, res) => {
   try {
     const dbUserData = await User.create({
-      username: req.body.usernameInput,
-      email: req.body.emailInput,
-      password: req.body.passwordInput,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     });
     res.json(dbUserData);
   } catch (err) {
@@ -50,7 +50,6 @@ router.post("/login", async (req, res) => {
         .status(200)
         .json({ user: dbUserData, message: "You are now logged in!" });
     });
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

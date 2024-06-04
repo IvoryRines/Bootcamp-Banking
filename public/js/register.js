@@ -8,7 +8,11 @@ const registerFormHandler = async (event) => {
   if (emailInput && passwordInput && usernameInput) {
     const response = await fetch("/api/users/register", {
       method: "POST",
-      body: JSON.stringify({ emailInput, passwordInput, usernameInput }),
+      body: JSON.stringify({
+        email: emailInput,
+        password: passwordInput,
+        username: usernameInput,
+      }),
       headers: { "Content-Type": "application/json" },
     });
 

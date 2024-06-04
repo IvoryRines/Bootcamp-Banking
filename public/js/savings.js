@@ -147,7 +147,7 @@ window.addEventListener("load", () => {
 });
 
 const transactionDateHandler = () => {
-  let updatedAt = document.querySelector(".update").textContent.trim();
+  let updatedAt = document.querySelector(".update").textContent.trim() ?? null;
   let updateTime = dayjs(updatedAt).format("h:mm A");
   let updateDate = dayjs(updatedAt).format("MMMM D, YYYY");
   let today = dayjs().format("MMMM D, YYYY");

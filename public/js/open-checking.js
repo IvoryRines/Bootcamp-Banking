@@ -1,4 +1,4 @@
-const openCheckingHandler = async (event) => {
+const openChecking = async (event) => {
     event.preventDefault();
   
       var minm = 100000000;
@@ -25,4 +25,4 @@ const openCheckingHandler = async (event) => {
   
   document
     .querySelector("#open-checking")
-    .addEventListener("click", openCheckingHandler);
+    .addEventListener("click", openChecking);
